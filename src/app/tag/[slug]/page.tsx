@@ -45,7 +45,7 @@ export default async function TagPage({
         lyrics.release_year,
         lyrics.genre,
         lyrics.genre_slug
-      FROM public_lyrics
+      FROM public_lyrics AS lyrics
       INNER JOIN lyric_tags
         ON lyric_tags.lyric_id = lyrics.id
       INNER JOIN tags

@@ -5,6 +5,7 @@ import {
 } from "@/lib/lyrics";
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 import ThemeToggle from "@/components/ThemeToggle";
+import HeaderSearch from "@/components/HeaderSearch";
 
 export type CollectionLyric = {
   id: number;
@@ -61,13 +62,7 @@ export default function LyricCollectionPage({
               </Link>
             </nav>
 
-            <Link
-              href="/search"
-              aria-label="Search"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 transition hover:border-black/35"
-            >
-              <span className="text-base">⌕</span>
-            </Link>
+            <HeaderSearch />
             <ThemeToggle />
 
 
