@@ -1,0 +1,184 @@
+import Link from "next/link";
+import LyricEntry from "@/components/LyricEntry";
+import {
+  dateToPath,
+  getAdjacentPublishedLyrics,
+  getLatestPublishedLyric,
+} from "@/lib/lyrics";
+
+export const dynamic = "force-dynamic";
+
+function isPreviousCalendarDay(current: string, previous: string) {
+  const currentDate = new Date(`${current}T12:00:00Z`);
+  currentDate.setUTCDate(currentDate.getUTCDate() - 1);
+
+  return currentDate.toISOString().slice(0, 10) === previous;
+}
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ comment?: string }>;
+}) {
+  const { comment } = await searchParams;
+  const result = await getLatestPublishedLyric();
+
+  if (!result) {
+    return (
+      <main className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+        <div className="mx-auto max-w-4xl px-6 py-24">
+          <p className="eyebrow text-[var(--accent)]">
+            Lyric of the Day
+          </p>
+
+          <h1 className="mt-6 text-5xl font-semibold tracking-[-0.04em]">
+            No lyric published yet.
+          </h1>
+
+          <p className="mt-4 text-lg text-black/55">
+            Check back soon.
+          </p>
+        </div>
+      </main>
+    );
+  }
+
+  const { lyric, tags } = result;
+  const { previous } = await getAdjacentPublishedLyrics(
+    lyric.publish_date
+  );
+
+  const previousLabel =
+    previous &&
+    isPreviousCalendarDay(lyric.publish_date, previous.publish_date)
+      ? "Yesterday"
+      : "Previous";
+
+  return (
+    <main className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      <header className="border-b border-black/10">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
+          <Link href="/" className="group flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-black/20 text-xs font-bold tracking-[0.15em]">
+              LOTD
+            </span>
+
+            <div className="leading-none">
+              <div className="text-sm font-bold uppercase tracking-[0.22em]">
+                Lyric
+              </div>
+              <div className="mt-1 text-[11px] uppercase tracking-[0.27em] text-black/50">
+                of the day
+              </div>
+            </div>
+          </Link>
+
+          <div className="flex items-center gap-5">
+            <nav className="hidden items-center gap-6 text-sm md:flex">
+              <Link className="site-link" href="/">
+                Today
+              </Link>
+
+              <Link className="site-link" href="/archive">
+                Archive
+              </Link>
+
+              <Link className="site-link" href="/about">
+                About
+              </Link>
+            </nav>
+
+            <Link
+              href="/search"
+              aria-label="Search"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 transition hover:border-black/35"
+            >
+              <span className="text-base">⌕</span>
+            </Link>
+
+            <Link
+              href="/random"
+              className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+            >
+              Random Lyric
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <LyricEntry
+        lyric={lyric}
+        tags={tags}
+        commentStatus={comment}
+      />
+
+      <nav className="mx-auto grid max-w-4xl grid-cols-1 gap-3 border-t border-black/10 px-6 pb-20 pt-8 md:grid-cols-2">
+        {previous ? (
+          <Link
+            href={dateToPath(previous.publish_date)}
+            className="daily-nav-card"
+          >
+            <span className="text-xs uppercase tracking-[0.18em] text-black/40">
+              {previousLabel}
+            </span>
+
+            <span className="mt-2 font-semibold">
+              {previous.artist}
+            </span>
+
+            <span className="mt-1 text-sm text-black/45">
+              {previous.song_title}
+            </span>
+          </Link>
+        ) : (
+          <div className="daily-nav-card opacity-40">
+            <span className="text-xs uppercase tracking-[0.18em] text-black/40">
+              Previous
+            </span>
+
+            <span className="mt-2 font-semibold">
+              Beginning of archive
+            </span>
+          </div>
+        )}
+
+        <Link
+          href="/random"
+          className="daily-nav-card text-left md:text-center"
+        >
+          <span className="text-xs uppercase tracking-[0.18em] text-black/40">
+            Discover
+          </span>
+
+          <span className="mt-2 font-semibold">
+            Random Lyric
+          </span>
+
+          <span className="mt-1 text-sm text-black/45">
+            Surprise me →
+          </span>
+        </Link>
+      </nav>
+
+      <footer className="border-t border-black/10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-black/45 md:flex-row md:items-center md:justify-between">
+          <p>© 2026 Lyric of the Day</p>
+
+          <div className="flex gap-5">
+            <Link className="site-link" href="/about">
+              About
+            </Link>
+
+            <Link className="site-link" href="/archive">
+              Archive
+            </Link>
+
+            <Link className="site-link" href="/search">
+              Search
+            </Link>
+          </div>
+        </div>
+      </footer>
+    </main>
+  );
+}
