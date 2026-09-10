@@ -1,6 +1,7 @@
 import { getDb } from "@/lib/db";
 import { notFound } from "next/navigation";
 import DeleteLyricButton from "@/components/admin/DeleteLyricButton";
+import CopyTweetButton from "@/components/admin/CopyTweetButton";
 
 type LyricRow = {
   id: number;
@@ -295,15 +296,23 @@ export default async function EditLyricPage({
             </div>
           </AdminSection>
 
-          <div className="flex items-center justify-between border-t border-black/10 pt-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-black/10 pt-6">
             <DeleteLyricButton lyricId={lyric.id} />
 
-            <button
-              type="submit"
-              className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            >
-              Save Changes
-            </button>
+            <div className="flex items-center gap-3">
+              <CopyTweetButton
+                lyricText={lyric.lyric_text}
+                songTitle={lyric.song_title}
+                artist={lyric.artist}
+              />
+
+              <button
+                type="submit"
+                className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+              >
+                Save Changes
+              </button>
+            </div>
           </div>
         </form>
       </div>

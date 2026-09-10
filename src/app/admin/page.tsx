@@ -1,4 +1,5 @@
 import { getDb } from "@/lib/db";
+import CopyTweetButton from "@/components/admin/CopyTweetButton";
 
 type LyricSummary = {
   id: number;
@@ -6,6 +7,7 @@ type LyricSummary = {
   publish_time: string;
   artist: string;
   song_title: string;
+  lyric_text?: string;
   status: string;
 };
 
@@ -139,6 +141,7 @@ export default async function AdminPage() {
         publish_time,
         artist,
         song_title,
+        lyric_text,
         CASE
           WHEN status = 'scheduled'
             AND publish_epoch IS NOT NULL
@@ -562,10 +565,9 @@ export default async function AdminPage() {
                   <div className="divide-y divide-black/10">
                     {nextSevenDays.map(({ date, lyric }) =>
                       lyric ? (
-                        <a
+                        <div
                           key={date}
-                          href={`/admin/${lyric.id}`}
-                          className="block p-4 transition hover:bg-black/[0.025]"
+                          className="p-4 transition hover:bg-black/[0.025]"
                         >
                           <div className="flex items-center justify-between gap-3">
                             <span className="text-xs font-medium text-black/45">
@@ -590,7 +592,23 @@ export default async function AdminPage() {
                               )}
                             </span>
                           </div>
-                        </a>
+
+                          <div className="mt-3 flex flex-wrap items-center gap-2">
+                            <a
+                              href={`/admin/${lyric.id}`}
+                              className="inline-flex h-9 items-center justify-center rounded-full border border-black/15 px-3 py-0 text-[12px] font-semibold leading-none transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                            >
+                              Edit
+                            </a>
+
+                            <CopyTweetButton
+                              lyricText={lyric.lyric_text ?? ""}
+                              songTitle={lyric.song_title}
+                              artist={lyric.artist}
+                              compact
+                            />
+                          </div>
+                        </div>
                       ) : (
                         <div
                           key={date}
