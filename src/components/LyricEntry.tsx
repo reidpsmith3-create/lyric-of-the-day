@@ -72,7 +72,7 @@ export default async function LyricEntry({
           </span>
         </div>
 
-        <blockquote className="max-w-4xl text-[clamp(2.25rem,5.4vw,5.1rem)] font-medium leading-[1.02] tracking-[-0.04em]">
+        <blockquote className="max-w-4xl whitespace-pre-wrap text-[clamp(1.7rem,3.7vw,3.55rem)] font-medium leading-[1.1] tracking-[-0.03em]">
           “{lyric.lyric_text}”
         </blockquote>
 
@@ -80,12 +80,12 @@ export default async function LyricEntry({
           <div>
             <Link
               href={`/artist/${lyric.artist_slug}`}
-              className="text-sm uppercase tracking-[0.17em] text-[var(--accent)]"
+              className="text-xs uppercase tracking-[0.17em] text-[var(--accent)]"
             >
               {lyric.artist}
             </Link>
 
-            <h1 className="mt-2 text-3xl font-semibold tracking-[-0.02em] md:text-4xl">
+            <h1 className="mt-2 text-2xl font-semibold tracking-[-0.02em] md:text-3xl">
               {lyric.song_title}
             </h1>
 
@@ -219,12 +219,12 @@ export default async function LyricEntry({
             <div>
               <p className="eyebrow">Conversation</p>
 
-              <h2 className="mt-2 text-3xl font-semibold tracking-[-0.02em]">
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.02em]">
                 Comments
               </h2>
             </div>
 
-            <p className="text-sm text-black/45">
+            <p className="text-xs text-black/45">
               What does this lyric mean to you?
             </p>
           </div>
@@ -234,14 +234,14 @@ export default async function LyricEntry({
               {comments.map((comment) => (
                 <article key={comment.id} className="py-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <p className="font-semibold">{comment.name}</p>
+                    <p className="text-sm font-semibold">{comment.name}</p>
 
                     <p className="text-xs uppercase tracking-[0.15em] text-black/35">
                       {formatCommentDate(comment.created_at)}
                     </p>
                   </div>
 
-                  <p className="mt-3 whitespace-pre-line leading-7 text-black/70">
+                  <p className="mt-3 whitespace-pre-line text-sm leading-6 text-black/70">
                     {comment.comment_text}
                   </p>
                 </article>
