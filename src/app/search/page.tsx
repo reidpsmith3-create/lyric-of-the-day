@@ -6,6 +6,7 @@ import {
   getCentralDate,
 } from "@/lib/lyrics";
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +52,7 @@ export default async function SearchPage({
           lyrics.release_year,
           lyrics.genre,
           lyrics.genre_slug
-        FROM public_lyrics
+        FROM public_lyrics AS lyrics
         LEFT JOIN lyric_tags
           ON lyric_tags.lyric_id = lyrics.id
         LEFT JOIN tags
@@ -89,11 +90,11 @@ export default async function SearchPage({
   return (
     <main className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
       <header className="border-b border-black/10">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
-          <Link href="/" className="group flex items-center gap-3">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-6 sm:py-5 md:flex-nowrap">
+          <Link href="/" className="group flex items-center gap-2 sm:gap-3">
             <HeaderBrand />
 
-            <div className="leading-none">
+            <div className="hidden leading-none sm:block">
               <div className="text-sm font-bold uppercase tracking-[0.22em]">
                 Lyric
               </div>
@@ -103,7 +104,7 @@ export default async function SearchPage({
             </div>
           </Link>
 
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2 sm:gap-5">
             <nav className="hidden items-center gap-6 text-sm md:flex">
               <Link className="site-link" href="/">
                 Today
@@ -125,15 +126,35 @@ export default async function SearchPage({
             >
               <span className="text-base">⌕</span>
             </Link>
+            <ThemeToggle />
+
 
             <Link
               href="/random"
-              className="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+              className="rounded-full bg-[var(--accent)] px-3 py-2 text-xs font-semibold text-white transition hover:opacity-90 sm:px-4 sm:text-sm"
             >
-              Random Lyric
+              <span className="sm:hidden">Random</span>
+              <span className="hidden sm:inline">Random Lyric</span>
             </Link>
           </div>
-        </div>
+        
+          <nav
+            aria-label="Mobile navigation"
+            className="order-3 flex w-full items-center gap-6 border-t border-black/10 pt-3 text-xs md:hidden"
+          >
+            <Link className="site-link" href="/">
+              Today
+            </Link>
+
+            <Link className="site-link" href="/archive">
+              Archive
+            </Link>
+
+            <Link className="site-link" href="/about">
+              About
+            </Link>
+          </nav>
+</div>
       </header>
 
       <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">

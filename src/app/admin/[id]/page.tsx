@@ -54,7 +54,13 @@ export default async function EditLyricPage({
         spotify_url,
         apple_music_url,
         youtube_url,
-        status
+        CASE
+          WHEN status = 'scheduled'
+            AND publish_epoch IS NOT NULL
+            AND publish_epoch <= unixepoch()
+          THEN 'published'
+          ELSE status
+        END AS status
       FROM lyrics
       WHERE id = ?
       LIMIT 1

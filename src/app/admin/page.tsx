@@ -73,7 +73,13 @@ export default async function AdminPage() {
         publish_time,
         artist,
         song_title,
-        status
+        CASE
+          WHEN status = 'scheduled'
+            AND publish_epoch IS NOT NULL
+            AND publish_epoch <= unixepoch()
+          THEN 'published'
+          ELSE status
+        END AS status
       FROM lyrics
       ORDER BY publish_date DESC
       LIMIT 20
@@ -109,7 +115,13 @@ export default async function AdminPage() {
         publish_time,
         artist,
         song_title,
-        status
+        CASE
+          WHEN status = 'scheduled'
+            AND publish_epoch IS NOT NULL
+            AND publish_epoch <= unixepoch()
+          THEN 'published'
+          ELSE status
+        END AS status
       FROM lyrics
       WHERE publish_date = ?
       LIMIT 1
@@ -127,7 +139,13 @@ export default async function AdminPage() {
         publish_time,
         artist,
         song_title,
-        status
+        CASE
+          WHEN status = 'scheduled'
+            AND publish_epoch IS NOT NULL
+            AND publish_epoch <= unixepoch()
+          THEN 'published'
+          ELSE status
+        END AS status
       FROM lyrics
       WHERE publish_date > ?
         AND publish_date <= ?
@@ -159,7 +177,13 @@ export default async function AdminPage() {
         publish_time,
         artist,
         song_title,
-        status
+        CASE
+          WHEN status = 'scheduled'
+            AND publish_epoch IS NOT NULL
+            AND publish_epoch <= unixepoch()
+          THEN 'published'
+          ELSE status
+        END AS status
       FROM lyrics
       WHERE status = 'draft'
       ORDER BY publish_date ASC

@@ -167,3 +167,327 @@ a.daily-nav-card:hover {
   background: rgb(255 255 255 / 0.5);
   box-shadow: 0 0 0 3px rgb(122 45 53 / 0.08);
 }
+
+/* -------------------------------------------------------
+   Color theme
+------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --paper: #181714;
+  --ink: #f1eadf;
+  --accent: #b85c66;
+  color-scheme: dark;
+}
+
+html,
+body {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+/* Existing design uses black opacity utilities heavily.
+   Remap those tones against the dark paper without having
+   to duplicate every public component. */
+
+:root[data-theme="dark"] .text-black\/35 {
+  color: rgb(241 234 223 / 0.35) !important;
+}
+
+:root[data-theme="dark"] .text-black\/40 {
+  color: rgb(241 234 223 / 0.40) !important;
+}
+
+:root[data-theme="dark"] .text-black\/45 {
+  color: rgb(241 234 223 / 0.45) !important;
+}
+
+:root[data-theme="dark"] .text-black\/50 {
+  color: rgb(241 234 223 / 0.50) !important;
+}
+
+:root[data-theme="dark"] .text-black\/60 {
+  color: rgb(241 234 223 / 0.60) !important;
+}
+
+:root[data-theme="dark"] .text-black\/65 {
+  color: rgb(241 234 223 / 0.65) !important;
+}
+
+:root[data-theme="dark"] .text-black\/70 {
+  color: rgb(241 234 223 / 0.70) !important;
+}
+
+:root[data-theme="dark"] .border-black\/10 {
+  border-color: rgb(241 234 223 / 0.10) !important;
+}
+
+:root[data-theme="dark"] .border-black\/15 {
+  border-color: rgb(241 234 223 / 0.15) !important;
+}
+
+:root[data-theme="dark"] .border-black\/20 {
+  border-color: rgb(241 234 223 / 0.20) !important;
+}
+
+:root[data-theme="dark"] .border-black\/25 {
+  border-color: rgb(241 234 223 / 0.25) !important;
+}
+
+:root[data-theme="dark"] .tag-pill {
+  border-color: rgb(241 234 223 / 0.14);
+  color: rgb(241 234 223 / 0.68);
+}
+
+:root[data-theme="dark"] .tag-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgb(255 255 255 / 0.04);
+}
+
+:root[data-theme="dark"] .listen-link {
+  border-color: rgb(241 234 223 / 0.28);
+}
+
+:root[data-theme="dark"] .field,
+:root[data-theme="dark"] .admin-input {
+  border-color: rgb(241 234 223 / 0.14);
+  background: rgb(255 255 255 / 0.035);
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .field::placeholder,
+:root[data-theme="dark"] .admin-input::placeholder {
+  color: rgb(241 234 223 / 0.34);
+}
+
+:root[data-theme="dark"] .field:focus,
+:root[data-theme="dark"] .admin-input:focus {
+  border-color: var(--accent);
+  background: rgb(255 255 255 / 0.055);
+}
+
+:root[data-theme="dark"] .daily-nav-card {
+  border-color: rgb(241 234 223 / 0.10);
+  background: rgb(255 255 255 / 0.025);
+}
+
+:root[data-theme="dark"] a.daily-nav-card:hover {
+  border-color: rgb(241 234 223 / 0.24);
+  background: rgb(255 255 255 / 0.05);
+}
+
+/* Sun / moon control */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  height: 2.25rem;
+  padding: 0.2rem;
+  border: 1px solid rgb(0 0 0 / 0.15);
+  border-radius: 999px;
+}
+
+.theme-toggle button {
+  display: flex;
+  width: 1.65rem;
+  height: 1.65rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(0 0 0 / 0.38);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.theme-toggle button.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  border-color: rgb(241 234 223 / 0.16);
+}
+
+:root[data-theme="dark"] .theme-toggle button {
+  color: rgb(241 234 223 / 0.42);
+}
+
+:root[data-theme="dark"] .theme-toggle button.is-active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    height: 2rem;
+  }
+
+  .theme-toggle button {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+}
+
+@media (max-width: 639px) {
+  header img[alt=""] {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* -------------------------------------------------------
+   Header search
+------------------------------------------------------- */
+
+.header-search {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-search-form {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid rgb(0 0 0 / 0.15);
+  border-radius: 999px;
+  background: transparent;
+  transition:
+    width 180ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.header-search.is-open .header-search-form {
+  width: 13rem;
+  border-color: rgb(0 0 0 / 0.28);
+  background: rgb(255 255 255 / 0.22);
+}
+
+.header-search input {
+  min-width: 0;
+  width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.82rem;
+  opacity: 0;
+  padding: 0;
+  transition:
+    opacity 120ms ease,
+    padding 180ms ease;
+}
+
+.header-search.is-open input {
+  width: auto;
+  opacity: 1;
+  padding-left: 0.85rem;
+}
+
+.header-search input::placeholder {
+  color: rgb(0 0 0 / 0.38);
+}
+
+.header-search button {
+  display: flex;
+  width: 2.15rem;
+  height: 2.15rem;
+  flex: 0 0 2.15rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* Dark mode */
+
+:root[data-theme="dark"] .header-search-form {
+  border-color: rgb(241 234 223 / 0.16);
+}
+
+:root[data-theme="dark"] .header-search.is-open .header-search-form {
+  border-color: rgb(241 234 223 / 0.28);
+  background: rgb(255 255 255 / 0.04);
+}
+
+:root[data-theme="dark"] .header-search input::placeholder {
+  color: rgb(241 234 223 / 0.38);
+}
+
+/* Mobile: let the search expand over available header space */
+
+@media (max-width: 639px) {
+  .header-search.is-open {
+    position: absolute;
+    left: 4rem;
+    right: 0.75rem;
+    z-index: 20;
+  }
+
+  .header-search.is-open .header-search-form {
+    width: 100%;
+    background: var(--paper);
+    box-shadow: 0 4px 18px rgb(0 0 0 / 0.08);
+  }
+
+  :root[data-theme="dark"] .header-search.is-open .header-search-form {
+    background: var(--paper);
+  }
+}
+
+/* -------------------------------------------------------
+   Share lyric
+------------------------------------------------------- */
+
+.share-lyric-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgb(0 0 0 / 0.14);
+  border-radius: 999px;
+  background: transparent;
+  padding: 0.5rem 0.8rem;
+  color: rgb(0 0 0 / 0.58);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    background-color 150ms ease;
+}
+
+.share-lyric-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgb(255 255 255 / 0.2);
+}
+
+:root[data-theme="dark"] .share-lyric-button {
+  border-color: rgb(241 234 223 / 0.14);
+  color: rgb(241 234 223 / 0.58);
+}
+
+:root[data-theme="dark"] .share-lyric-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgb(255 255 255 / 0.04);
+}

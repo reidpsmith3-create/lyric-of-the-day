@@ -8,6 +8,7 @@ import {
   getLyricByDate,
 } from "@/lib/lyrics";
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export const dynamic = "force-dynamic";
 
@@ -52,40 +53,71 @@ export default async function HistoricalLyricPage({
   return (
     <main>
       <header className="border-b border-black/10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black text-[10px] font-bold tracking-[0.12em]">
-              LOTD
-            </div>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:gap-6 sm:px-6 sm:py-5 md:flex-nowrap">
+          <Link href="/" className="group flex items-center gap-2 sm:gap-3">
+            <HeaderBrand />
 
-            <div className="text-xs font-semibold leading-tight tracking-[0.2em]">
-              LYRIC
-              <br />
-              OF THE DAY
+            <div className="hidden leading-none sm:block">
+              <div className="text-sm font-bold uppercase tracking-[0.22em]">
+                Lyric
+              </div>
+              <div className="mt-1 text-[11px] uppercase tracking-[0.27em] text-black/50">
+                of the day
+              </div>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-8 text-sm md:flex">
-            <Link href="/" className="site-link">
-              Today
+          <div className="flex items-center gap-2 sm:gap-5">
+            <nav className="hidden items-center gap-6 text-sm md:flex">
+              <Link className="site-link" href="/">
+                Today
+              </Link>
+
+              <Link className="site-link" href="/archive">
+                Archive
+              </Link>
+
+              <Link className="site-link" href="/about">
+                About
+              </Link>
+            </nav>
+
+            <Link
+              href="/search"
+              aria-label="Search"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-black/15 transition hover:border-black/35"
+            >
+              <span className="text-base">⌕</span>
             </Link>
-            <Link href="/archive" className="site-link">
-              Archive
-            </Link>
-            <Link href="/about" className="site-link">
-              About
-            </Link>
-            <Link href="/search" className="site-link" aria-label="Search">
-              Search
-            </Link>
+            <ThemeToggle />
+
+
             <Link
               href="/random"
-              className="rounded-full bg-[var(--accent)] px-5 py-2.5 font-semibold text-white"
+              className="rounded-full bg-[var(--accent)] px-3 py-2 text-xs font-semibold text-white transition hover:opacity-90 sm:px-4 sm:text-sm"
             >
-              Random Lyric
+              <span className="sm:hidden">Random</span>
+              <span className="hidden sm:inline">Random Lyric</span>
+            </Link>
+          </div>
+        
+          <nav
+            aria-label="Mobile navigation"
+            className="order-3 flex w-full items-center gap-6 border-t border-black/10 pt-3 text-xs md:hidden"
+          >
+            <Link className="site-link" href="/">
+              Today
+            </Link>
+
+            <Link className="site-link" href="/archive">
+              Archive
+            </Link>
+
+            <Link className="site-link" href="/about">
+              About
             </Link>
           </nav>
-        </div>
+</div>
       </header>
 
       <LyricEntry
@@ -143,22 +175,29 @@ export default async function HistoricalLyricPage({
       </section>
 
       <footer className="border-t border-black/10">
-          <div className="mb-8">
+        <div className="mx-auto grid max-w-6xl items-center gap-6 px-6 py-8 text-sm text-black/45 md:grid-cols-3">
+          <div className="flex justify-center md:justify-start">
             <FooterBrand />
           </div>
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 text-sm text-black/50 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div>© 2026 Lyric of the Day</div>
 
-          <div className="flex gap-6">
-            <Link href="/about" className="hover:text-black">
-              About
-            </Link>
-            <Link href="/archive" className="hover:text-black">
-              Archive
-            </Link>
-            <Link href="/search" className="hover:text-black">
-              Search
-            </Link>
+          <div className="text-center">
+            <p>© 2026 Lyric of the Day</p>
+          </div>
+
+          <div className="flex justify-center md:justify-end">
+            <div className="flex gap-5">
+              <Link className="site-link" href="/about">
+                About
+              </Link>
+
+              <Link className="site-link" href="/archive">
+                Archive
+              </Link>
+
+              <Link className="site-link" href="/search">
+                Search
+              </Link>
+            </div>
           </div>
         </div>
       </footer>

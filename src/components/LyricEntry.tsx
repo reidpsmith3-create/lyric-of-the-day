@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ShareLyricButton from "@/components/ShareLyricButton";
 import { getDb } from "@/lib/db";
 import {
   dateToPath,
@@ -71,7 +72,7 @@ export default async function LyricEntry({
           </span>
         </div>
 
-        <blockquote className="max-w-4xl text-[clamp(2.75rem,7vw,6.7rem)] font-medium leading-[0.98] tracking-[-0.045em]">
+        <blockquote className="max-w-4xl text-[clamp(2.25rem,5.4vw,5.1rem)] font-medium leading-[1.02] tracking-[-0.04em]">
           “{lyric.lyric_text}”
         </blockquote>
 
@@ -97,8 +98,9 @@ export default async function LyricEntry({
             )}
           </div>
 
-          <div className="flex flex-wrap gap-2 md:justify-end">
-            {lyric.genre && lyric.genre_slug && (
+          <div className="flex flex-col items-start gap-3 md:items-end">
+            <div className="flex flex-wrap gap-2 md:justify-end">
+              {lyric.genre && lyric.genre_slug && (
               <Link
                 href={`/genre/${lyric.genre_slug}`}
                 className="tag-pill"
@@ -116,15 +118,22 @@ export default async function LyricEntry({
               </Link>
             )}
 
-            {tags.map((tag) => (
-              <Link
-                key={tag.slug}
-                href={`/tag/${tag.slug}`}
-                className="tag-pill"
-              >
-                {tag.name}
-              </Link>
-            ))}
+              {tags.map((tag) => (
+                <Link
+                  key={tag.slug}
+                  href={`/tag/${tag.slug}`}
+                  className="tag-pill"
+                >
+                  {tag.name}
+                </Link>
+              ))}
+            </div>
+
+            <ShareLyricButton
+              url={permanentPath}
+              artist={lyric.artist}
+              songTitle={lyric.song_title}
+            />
           </div>
         </div>
 
