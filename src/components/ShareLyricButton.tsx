@@ -14,7 +14,7 @@ export default function ShareLyricButton({
   const [copied, setCopied] = useState(false);
 
   async function handleShare() {
-    const absoluteUrl = new URL(url, window.location.origin).toString();
+    const absoluteUrl = new URL(url, "https://todayslyric.com").toString();
 
     try {
       if (navigator.share) {

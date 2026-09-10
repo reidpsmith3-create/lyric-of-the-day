@@ -491,3 +491,7 @@ body {
   color: var(--accent);
   background: rgb(255 255 255 / 0.04);
 }
+
+:root[data-theme="dark"] .text-black\/80 {
+  color: rgb(241 234 223 / 0.80) !important;
+}

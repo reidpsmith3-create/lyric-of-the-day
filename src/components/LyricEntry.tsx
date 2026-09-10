@@ -137,17 +137,19 @@ export default async function LyricEntry({
           </div>
         </div>
 
-        <section className="mt-16 grid gap-8 border-t border-black/10 pt-10 md:grid-cols-[180px_1fr]">
-          <div>
-            <p className="eyebrow">Why This Lyric</p>
-          </div>
+        {lyric.commentary?.trim() && (
+          <section className="mt-16 grid gap-8 border-t border-black/10 pt-10 md:grid-cols-[180px_1fr]">
+            <div>
+              <p className="eyebrow">Why This Lyric</p>
+            </div>
 
-          <div className="max-w-2xl">
-            <p className="whitespace-pre-line text-xl leading-8 text-black/80 md:text-2xl md:leading-9">
-              {lyric.commentary}
-            </p>
-          </div>
-        </section>
+            <div className="max-w-2xl">
+              <p className="whitespace-pre-line text-xl leading-8 text-black/80 md:text-2xl md:leading-9">
+                {lyric.commentary}
+              </p>
+            </div>
+          </section>
+        )}
 
         {(lyric.spotify_url ||
           lyric.apple_music_url ||

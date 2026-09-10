@@ -73,8 +73,7 @@ export async function POST(
     !publishTime ||
     !artist ||
     !songTitle ||
-    !lyricText ||
-    !commentary
+    !lyricText
   ) {
     return new Response("Missing required fields.", {
       status: 400,

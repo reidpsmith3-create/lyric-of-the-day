@@ -347,14 +347,13 @@ export default async function AdminPage() {
               </AdminSection>
 
               <AdminSection
-                title="Why This Lyric"
-                description="Your editorial note about why you chose it."
+                title="Why This Lyric (optional)"
+                description="Optional editorial context about why you chose it."
               >
                 <textarea
                   className="admin-input min-h-48 resize-y"
                   name="commentary"
                   placeholder="What makes this lyric worth featuring?"
-                  required
                 />
               </AdminSection>
 
