@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 
 export default function AboutPage() {
   return (
@@ -6,9 +7,7 @@ export default function AboutPage() {
       <header className="border-b border-black/10">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-5">
           <Link href="/" className="group flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-black/20 text-xs font-bold tracking-[0.15em]">
-              LOTD
-            </span>
+            <HeaderBrand />
 
             <div className="leading-none">
               <div className="text-sm font-bold uppercase tracking-[0.22em]">
@@ -176,10 +175,17 @@ export default function AboutPage() {
       </div>
 
       <footer className="border-t border-black/10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-black/45 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Lyric of the Day</p>
+        <div className="mx-auto grid max-w-6xl items-center gap-6 px-6 py-8 text-sm text-black/45 md:grid-cols-3">
+          <div className="flex justify-center md:justify-start">
+            <FooterBrand />
+          </div>
 
-          <div className="flex gap-5">
+          <div className="text-center">
+            <p>© 2026 Lyric of the Day</p>
+          </div>
+
+          <div className="flex justify-center md:justify-end">
+            <div className="flex gap-5">
             <Link className="site-link" href="/about">
               About
             </Link>
@@ -191,6 +197,7 @@ export default function AboutPage() {
             <Link className="site-link" href="/search">
               Search
             </Link>
+          </div>
           </div>
         </div>
       </footer>

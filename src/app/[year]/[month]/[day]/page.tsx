@@ -7,6 +7,7 @@ import {
   getCentralDate,
   getLyricByDate,
 } from "@/lib/lyrics";
+import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 
 export const dynamic = "force-dynamic";
 
@@ -142,6 +143,9 @@ export default async function HistoricalLyricPage({
       </section>
 
       <footer className="border-t border-black/10">
+          <div className="mb-8">
+            <FooterBrand />
+          </div>
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 text-sm text-black/50 sm:px-8 md:flex-row md:items-center md:justify-between">
           <div>© 2026 Lyric of the Day</div>
 
