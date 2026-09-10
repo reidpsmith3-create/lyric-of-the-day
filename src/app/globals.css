@@ -495,3 +495,15 @@ body {
 :root[data-theme="dark"] .text-black\/80 {
   color: rgb(241 234 223 / 0.80) !important;
 }
+
+:root[data-theme="dark"] .text-black\/25 {
+  color: rgb(241 234 223 / 0.25) !important;
+}
+
+:root[data-theme="dark"] .text-black\/55 {
+  color: rgb(241 234 223 / 0.55) !important;
+}
+
+:root[data-theme="dark"] .text-black\/75 {
+  color: rgb(241 234 223 / 0.75) !important;
+}
