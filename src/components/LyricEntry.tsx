@@ -72,7 +72,7 @@ export default async function LyricEntry({
           </span>
         </div>
 
-        <blockquote className="max-w-4xl whitespace-pre-wrap text-[clamp(1.7rem,3.7vw,3.55rem)] font-medium leading-[1.1] tracking-[-0.03em]">
+        <blockquote className="max-w-4xl whitespace-pre-wrap text-[clamp(1.55rem,3.15vw,3rem)] font-medium leading-[1.1] tracking-[-0.03em]">
           “{lyric.lyric_text}”
         </blockquote>
 
