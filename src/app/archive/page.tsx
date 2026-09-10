@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getDb } from "@/lib/db";
 import {
@@ -8,6 +9,21 @@ import {
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 import ThemeToggle from "@/components/ThemeToggle";
 import HeaderSearch from "@/components/HeaderSearch";
+
+export const metadata: Metadata = {
+  title: "Archive",
+  description:
+    "Browse past Lyric of the Day selections and discover lyrics worth revisiting.",
+  alternates: {
+    canonical: "/archive",
+  },
+  openGraph: {
+    title: "Archive | Lyric of the Day",
+    description:
+      "Browse past Lyric of the Day selections and discover lyrics worth revisiting.",
+    url: "/archive",
+  },
+};
 
 export const dynamic = "force-dynamic";
 

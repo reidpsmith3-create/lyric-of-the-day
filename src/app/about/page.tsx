@@ -1,7 +1,23 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 import ThemeToggle from "@/components/ThemeToggle";
 import HeaderSearch from "@/components/HeaderSearch";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "About Lyric of the Day — one lyric every day, with original commentary on the words that stay with us.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About | Lyric of the Day",
+    description:
+      "About Lyric of the Day — one lyric every day, with original commentary on the words that stay with us.",
+    url: "/about",
+  },
+};
 
 export default function AboutPage() {
   return (

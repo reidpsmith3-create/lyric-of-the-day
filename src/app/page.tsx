@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import LyricEntry from "@/components/LyricEntry";
 import {
@@ -8,6 +9,23 @@ import {
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 import ThemeToggle from "@/components/ThemeToggle";
 import HeaderSearch from "@/components/HeaderSearch";
+
+export const metadata: Metadata = {
+  title: "Lyric of the Day",
+  description:
+    "One lyric every day, with original commentary on the words that stay with us.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Lyric of the Day",
+    description:
+      "One lyric every day, with original commentary on the words that stay with us.",
+    url: "/",
+    siteName: "Lyric of the Day",
+    type: "website",
+  },
+};
 
 export const dynamic = "force-dynamic";
 

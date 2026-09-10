@@ -1,14 +1,65 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LyricEntry from "@/components/LyricEntry";
 import {
   dateToPath,
+  formatPublishDate,
   getAdjacentPublishedLyrics,
   getCentralDate,
   getLyricByDate,
 } from "@/lib/lyrics";
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 import ThemeToggle from "@/components/ThemeToggle";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{
+    year: string;
+    month: string;
+    day: string;
+  }>;
+}): Promise<Metadata> {
+  const { year, month, day } = await params;
+  const date = `${year}-${month}-${day}`;
+
+  const result = await getLyricByDate(date);
+
+  if (!result) {
+    return {
+      title: "Lyric",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const { lyric } = result;
+  const permanentPath = dateToPath(lyric.publish_date);
+
+  const title = `${lyric.song_title} — ${lyric.artist}`;
+
+  const description =
+    `Read the Lyric of the Day selection from ${formatPublishDate(
+      lyric.publish_date
+    )}: ${lyric.song_title} by ${lyric.artist}.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: permanentPath,
+    },
+    openGraph: {
+      title: `${title} | Lyric of the Day`,
+      description,
+      url: permanentPath,
+      type: "article",
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 

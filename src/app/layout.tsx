@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://todayslyric.com"),
   title: {
     default: "Lyric of the Day",
     template: "%s | Lyric of the Day",

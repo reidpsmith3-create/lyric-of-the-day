@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getDb } from "@/lib/db";
 import {
@@ -7,6 +8,19 @@ import {
 } from "@/lib/lyrics";
 import { HeaderBrand, FooterBrand } from "@/components/SiteBrand";
 import ThemeToggle from "@/components/ThemeToggle";
+
+export const metadata: Metadata = {
+  title: "Search",
+  description:
+    "Search the Lyric of the Day archive by artist, song, album, genre, or lyric.",
+  alternates: {
+    canonical: "/search",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export const dynamic = "force-dynamic";
 
